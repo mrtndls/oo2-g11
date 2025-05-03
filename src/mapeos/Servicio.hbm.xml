@@ -1,0 +1,15 @@
+<hibernate-mapping>
+	<class name="datos.Servicio" table="servicio">
+		<id column="idServicio" name="idServicio">
+			<generator class="identity" />
+		</id>
+		<property column="nombre" name="nombre" type="string" />
+		<property column="descripcion" name="descripcion" type="string" />
+
+		<!-- relacion mucho a mucho con Persona -->
+		<set table="persona_servicio" name="personas" outer-join="true">
+			<key column="idServicio" />
+			<many-to-many column="idPersona" class="datos.Persona" />
+		</set>
+	</class>
+</hibernate-mapping>
