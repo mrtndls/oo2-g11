@@ -1,0 +1,22 @@
+<hibernate-mapping>
+	<class name="datos.ReservaTurno" table="reserva_turno">
+		<id column="idReservaTurno" name="idReservaTurno">
+			<generator class="identity" />
+		</id>
+		<property column="fechaReserva" name="fechaReserva" type="LocalDateTime" />
+		<!-- para manejar el enum -->
+		<property name="estado" column="estado">
+			<type name="org.hibernate.type.EnumType">
+				<param name="enumClass">datos.EstadoReserva</param>
+				<param name="useNamed">true</param>
+			</type>
+		</property>
+
+		<!-- Relación muchos a uno con Turno -->
+		<many-to-one name="turno" column="idTurno" not-null="true" />
+
+		<!-- Relación muchos a uno con Persona -->
+		<many-to-one name="persona" column="idPersona" not-null="true" />
+
+	</class>
+</hibernate-mapping>
