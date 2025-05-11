@@ -1,0 +1,21 @@
+<hibernate-mapping>
+	<class name="datos.Persona" table="persona">
+		<id column="idPersona" name="idPersona">
+			<generator class="identity" />
+		</id>
+		<property column="nombre" name="nombre" type="string" />
+		<property column="apellido" name="apellido" type="string" />
+		<property column="dni" name="dni" type="int" />
+		<property column="email" name="email" type="string" />
+		<property column="telefono" name="telefono" type="string" />
+		<property column="fechaNacimiento" name="fechaNacimiento"
+			type="LocalDate" />
+
+		<!-- Relación 1 a muchos con ReservaTurno -->
+		<set name="reservas" table="reserva_turno" order-by="id asc"
+			inverse="true" lazy="true" fetch="select">
+			<key column="idPersona" not-null="true" />
+			<one-to-many class="datos.ReservaTurno" />
+		</set>
+	</class>
+</hibernate-mapping>

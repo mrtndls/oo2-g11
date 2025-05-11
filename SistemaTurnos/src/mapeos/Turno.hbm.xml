@@ -1,0 +1,27 @@
+<hibernate-mapping>
+	<class name="datos.Turno" table="turno">
+		<id column="idTurno" name="idTurno">
+			<generator class="identity" />
+		</id>
+		<property column="fecha" name="fecha" type="LocalDate" />
+		<property column="hora" name="hora" type="LocalTime" />
+		<property column="cupoMaximo" name="cupoMaximo" type="integer" />
+
+		<property name="estado" column="estado">
+			<type name="org.hibernate.type.EnumType">
+				<param name="enumClass">datos.EstadoTurno</param>
+				<param name="useNamed">true</param>
+			</type>
+		</property>
+
+		<!-- Relación muchos a uno con Servicio -->
+		<many-to-one name="servicio" column="idServicio" not-null="true" />
+
+		<!-- Relación 1 a muchos con ReservaTurno -->
+		<set name="reservas" table="reserva_turno" order-by="id asc"
+			inverse="true" lazy="true" fetch="select">
+			<key column="idTurno" not-null="true" />
+			<one-to-many class="datos.ReservaTurno" />
+		</set>
+	</class>
+</hibernate-mapping>
