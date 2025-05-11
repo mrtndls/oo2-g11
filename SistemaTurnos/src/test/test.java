@@ -53,7 +53,6 @@ public class test {
 		reservaTurno.setEstado(CONFIRMADA);
 		reservaTurno.setPersona(persona);
 		reservaTurno.setTurno(turno);
-		// turno.getReservas().add(reservaTurno);
 		long idReservaTurno = ReservaTurnoABM.getInstancia().agregarReservaTurno(reservaTurno);
 		System.out.println(ReservaTurnoABM.getInstancia().traerReservaTurnoPorId(idReservaTurno));
 		System.out.println("\n - MODIFICAR -");
@@ -75,7 +74,6 @@ public class test {
 		Persona personaElimniar = PersonaABM.getInstancia().traerPersonaPorId(idPersonaEliminar);
 		System.out.println("Person nuev para eliminar : " + personaElimniar);
 		PersonaABM.getInstancia().eliminarPersona(personaElimniar);
-		// Acá sí traés desde la base
 		Persona personaEliminada = PersonaABM.getInstancia().traerPersonaPorId(idPersonaEliminar);
 		System.out.println("¿Existe en BD?: " + personaEliminada);
 		///////////////////////////////////////// 3 //////////////////////////////
@@ -100,7 +98,6 @@ public class test {
 		System.out.println(" - Traer ReservaTurno por fecha reserva : "
 				+ ReservaTurnoABM.getInstancia().traerReservasPorFechaReserva(LocalDateTime.of(2025, 4, 1, 0, 0),
 						LocalDateTime.of(2025, 5, 11, 23, 59)));
-
 		System.out.println(
 				" - Traer Servicio por fecha creacion : " + ServicioABM.getInstancia().traerServiciosPorFechaCreacion(
 						LocalDateTime.of(2025, 5, 1, 0, 0), LocalDateTime.of(2025, 5, 11, 23, 59)));
